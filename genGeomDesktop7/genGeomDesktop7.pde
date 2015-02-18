@@ -47,7 +47,7 @@ void setup()
   oscP5 = new OscP5(this,5001);
  
   // set the remote location to be the localhost on port 5001
-  myRemoteLocation = new NetAddress("192.168.1.102",5001);
+  myRemoteLocation = new NetAddress("192.168.1.104",5001);
   
   // Create syhpon server to send frames out.
   server = new SyphonServer(this, "Processing Syphon");
@@ -120,7 +120,7 @@ if(overText == true){
 //  bob = new Stick(v, iniVel, 8, "A");
 //  }
 //  
-    bob = new Stick(v, iniVel, 18, "A");
+    bob = new Stick(v, iniVel, 14, "A");
   allBobs.add(bob);
  
  
