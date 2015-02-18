@@ -64,3 +64,49 @@ to be presented in seven cities in Europe and in Canada during
 2015.
 }
 }
+
+#Instructions
+
+the andoid app is controlling an l-system running on a computer.
+you will need to run the desktop part in processing (or export it from there).
+the desktop sketch is made in Proccesing 2.2.1 (java)
+the app is made in Proccesing 2.2.1 (andoid), but will function in java if you comment:
+import android.content.Context;                
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+
+genGeomOscAcc is the code for the app itself and genGeomDesktop is the receiver (running on the computer).
+if you do not want to change the functionality of the app you can download it as an .apk here: http://donuan.tv/project_gengeom.htm
+
+the app is sending OSC messages to the IP specified in the pde sketch (currently 192.168.1.102) so you need to set the computer IP to this for the communication to function (or change the ip in the app sketch and upload the updated version to the mobile device, for this you will need android SDK installed). once that is done the communication should work fine as long as both the phone/tablet and the computer is connected to the same WiFi.
+
+the desktop sketch is sending out the frames to syphon so that you could receive them in Mad Mapper / Modul8 / quartz composer / etc.
+if you are running the sketch on a PC you will need to comment that functionality out as the syphon framework is mac only (then just comment out everything that says "syphon").
+
+the sketch is using the libraries: oscP5, syphon, peasycam, toxiclibs (you can grab them from the libraries folder)
+
+#The App is sending:
+mouseX, mouseY, the value of the slider, if the app is in "triangle mode" or "circle mode", the accelerometor X, Y, Z)
+
+mouseX and mouseY which are received as the 1st and 2nd OSC value: remoteMouseX (int)
+remoteMouseY (int)
+
+the 3rd value is the position of the slider in the left corner of the app. this value is received as sliderValue (float).
+this is set to control the zoom in/out.
+(there is also a commented series of ifs concerning the sliderValue. this can be uncommented to have the slider controll the number of generations in the l-system).
+
+the 4th OSC message is a true / false messages stating if the app is in circle mode or triangle mode which is changed in the bottom right corner of the app.
+this is set to change the apperance of the l-system.
+
+the 5th value is a true / false message stating if the text in the app is pressed or not.
+this is set to control rotation.
+
+6th, 7th and 8th OSC message are corresponding to the android device's accelerometor (X,Y,Z)
+
+they are commented out because they are currently not set to affect anything but the app is sending them so they could be used for something without altering the app.
+
+hope you like it. let me know if you make it do something else :)
+
+
